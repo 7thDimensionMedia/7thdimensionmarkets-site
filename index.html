@@ -510,6 +510,7 @@ a:hover { color: #79c0ff; }
   align-items: flex-start;
   gap: 12px;
   cursor: pointer;
+  transition: border-color 0.3s;
 }
 .tos-gate input[type="checkbox"] {
   width: 18px; height: 18px;
@@ -527,7 +528,6 @@ a:hover { color: #79c0ff; }
 .tos-gate label strong { color: #c9d1d9; }
 .btn-locked {
   opacity: 0.35;
-  pointer-events: none;
   cursor: not-allowed;
 }
 
@@ -1038,6 +1038,9 @@ a:hover { color: #79c0ff; }
 </footer>
 
 <script>
+const ALERT_URL = "https://buy.stripe.com/4gMcN71NF7EZaCa8z63cc02";
+const PRO_URL   = "https://buy.stripe.com/7sY7sNcsjaRb6lU9Da3cc01";
+
 function toggleTOS(checkbox) {
   const locked = !checkbox.checked;
   ['btn-alerts', 'btn-pro'].forEach(id => {
@@ -1046,6 +1049,23 @@ function toggleTOS(checkbox) {
     else btn.classList.remove('btn-locked');
   });
 }
+
+// Intercept clicks on locked buttons
+document.addEventListener('DOMContentLoaded', function() {
+  ['btn-alerts', 'btn-pro'].forEach(id => {
+    document.getElementById(id).addEventListener('click', function(e) {
+      if (this.classList.contains('btn-locked')) {
+        e.preventDefault();
+        // Scroll to and flash the TOS checkbox
+        const gate = document.querySelector('.tos-gate');
+        gate.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        gate.style.borderColor = '#d4a843';
+        gate.style.transition = 'border-color 0.3s';
+        setTimeout(() => { gate.style.borderColor = '#21262d'; }, 1500);
+      }
+    });
+  });
+});
 </script>
 </body>
 </html>
