@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Service — 7th Dimension Markets</title>
+  <link rel="icon" type="image/png" href="icon7.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0d1117;
+      color: #c9d1d9;
+      line-height: 1.7;
+      padding: 0 0 60px;
+    }
+    a { color: #4db8b8; text-decoration: none; }
+    a:hover { color: #79c0ff; }
+
+    /* ── Nav ── */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 14px 24px;
+      backdrop-filter: blur(16px);
+      background: rgba(13, 17, 23, 0.92);
+      border-bottom: 1px solid #21262d;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      font-weight: 800;
+      font-size: 1rem;
+      color: #e6edf3;
+      text-decoration: none;
+    }
+    .nav-logo img { height: 32px; width: auto; }
+    .nav-back {
+      font-size: 0.82rem;
+      color: #8b949e;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-back:hover { color: #e6edf3; }
+
+    /* ── Container ── */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── Header ── */
+    .doc-header {
+      padding: 52px 0 36px;
+      border-bottom: 1px solid #21262d;
+      margin-bottom: 40px;
+    }
+    .doc-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #4db8b8;
+      margin-bottom: 12px;
+    }
+    .doc-header h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #e6edf3;
+      margin-bottom: 12px;
+      letter-spacing: -0.3px;
+    }
+    .doc-meta {
+      font-size: 0.8rem;
+      color: #484f58;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .doc-meta span { color: #8b949e; }
+
+    /* ── Sections ── */
+    .section-block {
+      margin-bottom: 40px;
+    }
+    h2 {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #d4a843;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 14px;
+      font-family: 'JetBrains Mono', monospace;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    h2::before {
+      content: '';
+      display: inline-block;
+      width: 3px;
+      height: 14px;
+      background: #d4a843;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    p {
+      font-size: 0.92rem;
+      color: #8b949e;
+      margin-bottom: 12px;
+      line-height: 1.75;
+    }
+    ul {
+      margin: 8px 0 14px 0;
+      padding: 0;
+      list-style: none;
+    }
+    ul li {
+      font-size: 0.92rem;
+      color: #8b949e;
+      padding: 6px 0 6px 18px;
+      position: relative;
+      line-height: 1.65;
+      border-bottom: 1px solid rgba(33, 38, 45, 0.5);
+    }
+    ul li:last-child { border-bottom: none; }
+    ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: #30363d;
+      font-size: 0.8rem;
+    }
+
+    /* ── Important callout ── */
+    .callout {
+      background: #161b22;
+      border: 1px solid #21262d;
+      border-left: 3px solid #d4a843;
+      border-radius: 8px;
+      padding: 18px 20px;
+      margin-bottom: 32px;
+    }
+    .callout p {
+      margin: 0;
+      font-size: 0.88rem;
+      color: #c9d1d9;
+      line-height: 1.65;
+    }
+    .callout strong { color: #e6edf3; }
+
+    /* ── Contact box ── */
+    .contact-box {
+      background: #161b22;
+      border: 1px solid #21262d;
+      border-radius: 10px;
+      padding: 24px 28px;
+      margin-top: 48px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .contact-box .icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .contact-box h3 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #e6edf3;
+      margin-bottom: 4px;
+    }
+    .contact-box p { margin: 0; font-size: 0.85rem; }
+
+    /* ── Divider ── */
+    hr {
+      border: none;
+      border-top: 1px solid #21262d;
+      margin: 36px 0;
+    }
+
+    /* ── Agreement bar ── */
+    .agreement-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0; right: 0;
+      background: rgba(13, 17, 23, 0.97);
+      border-top: 1px solid #21262d;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      backdrop-filter: blur(12px);
+      flex-wrap: wrap;
+    }
+    .agreement-bar p {
+      margin: 0;
+      font-size: 0.78rem;
+      color: #8b949e;
+    }
+    .btn-back {
+      display: inline-block;
+      padding: 9px 22px;
+      background: linear-gradient(135deg, #d4a843, #b8922e);
+      color: #0d1117;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.82rem;
+      white-space: nowrap;
+    }
+    .btn-back:hover { opacity: 0.9; color: #0d1117; }
+  </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="navbar">
+  <a href="/" class="nav-logo">
+    <img src="icon7.png" alt="7">th Dimension Markets
+  </a>
+  <a href="/#pricing" class="nav-back">← Back to Pricing</a>
+</nav>
+
+<div class="container">
+
+  <!-- Header -->
+  <div class="doc-header">
+    <div class="doc-label">Legal</div>
+    <h1>Terms of Service</h1>
+    <div class="doc-meta">
+      Effective Date: <span>March 30, 2026</span> &nbsp;·&nbsp;
+      Operator: <span>7th Dimension Media</span>
+    </div>
+  </div>
+
+  <!-- Intro callout -->
+  <div class="callout">
+    <p>By accessing or using Earth Scanner, you agree to be bound by these Terms of Service. <strong>If you do not agree, do not use the platform.</strong></p>
+  </div>
+
+  <!-- 1 -->
+  <div class="section-block">
+    <h2>1. Informational Purposes Only — Not Financial Advice</h2>
+    <p>Earth Scanner is a market data visualization and analytical tool. All data, signals, regime classifications, shock detections, Z-scores, backtesting results, forecasts, and any other output provided by this platform are for informational and educational purposes only.</p>
+    <p>Nothing on this platform constitutes financial advice, investment advice, trading advice, or any other form of professional advice. You should not make any financial, investment, or trading decision based solely on information provided by Earth Scanner.</p>
+    <p>You acknowledge that:</p>
+    <ul>
+      <li>Past performance (including backtested results) is not indicative of future results</li>
+      <li>All investment and trading involves risk of loss, including total loss of capital</li>
+      <li>You are solely responsible for your own financial decisions</li>
+      <li>You should consult a qualified financial advisor before making investment decisions</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <!-- 2 -->
+  <div class="section-block">
+    <h2>2. No Liability</h2>
+    <p>7th Dimension Media and its operators shall not be held liable for any losses, damages, or costs arising from:</p>
+    <ul>
+      <li>Your use of or reliance on any information provided by the platform</li>
+      <li>Trading or investment decisions made based on platform data or signals</li>
+      <li>Errors, inaccuracies, delays, or interruptions in the data</li>
+      <li>Any technical failures, downtime, or service disruptions</li>
+    </ul>
+    <p>You use this platform entirely at your own risk.</p>
+  </div>
+
+  <hr>
+
+  <!-- 3 -->
+  <div class="section-block">
+    <h2>3. Data Accuracy and Sources</h2>
+    <p>Market data is sourced from third-party providers including but not limited to Yahoo Finance, Binance, and CoinGecko. 7th Dimension Media does not guarantee the accuracy, completeness, timeliness, or reliability of any data.</p>
+    <p>Data may be:</p>
+    <ul>
+      <li>Delayed — not real-time for all assets</li>
+      <li>Incomplete for certain assets or time periods</li>
+      <li>Subject to retroactive corrections by data providers</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <!-- 4 -->
+  <div class="section-block">
+    <h2>4. Subscription and Billing</h2>
+    <ul>
+      <li>Pro subscriptions are billed monthly at the stated rate</li>
+      <li>All payments are non-refundable — you may cancel at any time to prevent future charges, but no refunds will be issued for current or prior billing periods</li>
+      <li>Pricing is subject to change; Founding Member rates are locked for the duration of continuous subscription</li>
+      <li>Payment processing is handled by Stripe; 7th Dimension Media does not store your payment information</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <!-- 5 -->
+  <div class="section-block">
+    <h2>5. Email Communications</h2>
+    <ul>
+      <li>Free users: your email is collected solely for Google OAuth authentication</li>
+      <li>Pro users: your email is used for authentication and subscription management</li>
+      <li>Pro users may opt in to receive email notifications for extreme market events (shock alerts)</li>
+      <li>We will never sell, share, or distribute your email address to third parties</li>
+      <li>You may opt out of non-essential communications at any time</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <!-- 6 -->
+  <div class="section-block">
+    <h2>6. Acceptable Use</h2>
+    <p>You agree not to:</p>
+    <ul>
+      <li>Redistribute, resell, or republish data obtained from the platform</li>
+      <li>Use automated tools to extract data at scale</li>
+      <li>Attempt to reverse-engineer the platform's analytical methods</li>
+      <li>Use the platform for any unlawful purpose</li>
+      <li>Share your Pro account credentials with others</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <!-- 7 -->
+  <div class="section-block">
+    <h2>7. Intellectual Property</h2>
+    <p>All analytical methods, user interface designs, code, and content on Earth Scanner are the property of 7th Dimension Media. You are granted a limited, non-transferable license to use the platform for personal, non-commercial analysis.</p>
+  </div>
+
+  <hr>
+
+  <!-- 8 -->
+  <div class="section-block">
+    <h2>8. Changes to Terms</h2>
+    <p>7th Dimension Media reserves the right to modify these terms at any time. Continued use of the platform after changes constitutes acceptance of the updated terms.</p>
+  </div>
+
+  <hr>
+
+  <!-- 9 -->
+  <div class="section-block">
+    <h2>9. Contact</h2>
+    <p>Questions about these terms?</p>
+    <div class="contact-box">
+      <div class="icon">✉️</div>
+      <div>
+        <h3>7th Dimension Media</h3>
+        <p>
+          <a href="mailto:info@7thdimensionmarkets.com">info@7thdimensionmarkets.com</a><br>
+          72 S Main St STE 485 · Orange, MA 01364
+        </p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Sticky bottom bar -->
+<div class="agreement-bar">
+  <p>By using Earth Scanner you confirm you have read and agree to these Terms of Service.</p>
+  <a href="/#pricing" class="btn-back">← Return to Pricing</a>
+</div>
+
+</body>
+</html>
