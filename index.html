@@ -499,6 +499,38 @@ a:hover { color: #79c0ff; }
 }
 .founding-note strong { color: #d4a843; }
 
+/* ── TOS Gate ──────────────────────────────────────── */
+.tos-gate {
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+}
+.tos-gate input[type="checkbox"] {
+  width: 18px; height: 18px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  accent-color: #4db8b8;
+  cursor: pointer;
+}
+.tos-gate label {
+  font-size: 0.78rem;
+  color: #8b949e;
+  line-height: 1.5;
+  cursor: pointer;
+}
+.tos-gate label strong { color: #c9d1d9; }
+.btn-locked {
+  opacity: 0.35;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
 /* ── Email Preview ─────────────────────────────────── */
 .email-preview-label {
   font-family: 'JetBrains Mono', monospace;
@@ -906,6 +938,15 @@ a:hover { color: #79c0ff; }
     <div class="section-label">Pricing</div>
     <h2 class="section-title">Choose Your Edge</h2>
     <p class="section-sub">From free exploration to real-time extreme shock alerts delivered to your inbox.</p>
+
+    <!-- TOS Gate -->
+    <div class="tos-gate" onclick="document.getElementById('tos-checkbox').click()">
+      <input type="checkbox" id="tos-checkbox" onclick="event.stopPropagation(); toggleTOS(this)">
+      <label for="tos-checkbox">
+        <strong>I agree to the Earth Scanner Terms of Service.</strong> I understand that Earth Scanner is an analytical and research tool only. Nothing on this platform constitutes investment advice. I am solely responsible for any trading or investment decisions I make.
+      </label>
+    </div>
+
     <div class="pricing-grid">
 
       <!-- Free -->
@@ -939,7 +980,7 @@ a:hover { color: #79c0ff; }
           <li><span class="check">&#10003;</span> Conviction reaction asset</li>
           <li><span class="check">&#10003;</span> No noise, no repeats</li>
         </ul>
-        <a href="https://buy.stripe.com/4gMcN71NF7EZaCa8z63cc02" class="btn btn-gold" target="_blank">Subscribe to Alerts &rarr;</a>
+        <a href="https://buy.stripe.com/4gMcN71NF7EZaCa8z63cc02" id="btn-alerts" class="btn btn-gold btn-locked" target="_blank">Subscribe to Alerts &rarr;</a>
       </div>
 
       <!-- Pro -->
@@ -956,7 +997,7 @@ a:hover { color: #79c0ff; }
           <li><span class="check">&#10003;</span> Signal Decay Radar</li>
           <li><span class="check">&#10003;</span> Forecast tab</li>
         </ul>
-        <a href="https://buy.stripe.com/7sY7sNcsjaRb6lU9Da3cc01" class="btn btn-teal" target="_blank">Subscribe to Pro &rarr;</a>
+        <a href="https://buy.stripe.com/7sY7sNcsjaRb6lU9Da3cc01" id="btn-pro" class="btn btn-teal btn-locked" target="_blank">Subscribe to Pro &rarr;</a>
         <p class="founding-note">Founding Members: <strong>$79/mo</strong> locked in forever</p>
       </div>
 
@@ -992,3 +1033,19 @@ a:hover { color: #79c0ff; }
     <div class="footer-inner">
       <p>&copy; 2026 7th Dimension Markets</p>
       <p class="disclaimer">Earth Scanner is an analytical and research tool. Nothing on this site constitutes investment advice. All historical per
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleTOS(checkbox) {
+  const locked = !checkbox.checked;
+  ['btn-alerts', 'btn-pro'].forEach(id => {
+    const btn = document.getElementById(id);
+    if (locked) btn.classList.add('btn-locked');
+    else btn.classList.remove('btn-locked');
+  });
+}
+</script>
+</body>
+</html>
