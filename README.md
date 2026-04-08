@@ -113,7 +113,7 @@ The key number is 11.0x. The strategy generated 11 times more return per unit of
  Price  Free forever  $99mo 
  Founding Member Price  —  $79mo — first 50 members lock this in forever 
 
- 🔒 Founding Member spots are limited. The first 50 subscribers lock in $79.99mo permanently. Regular price is $99.99mo. [Subscribe →](httpsbuy.stripe.com28E5kFdwn2kF7pY7v23cc00)
+ 🔒 Founding Member spots are limited. The first 50 subscribers lock in $79mo permanently. Regular price is $99mo. [Subscribe →](httpsbuy.stripe.com28E5kFdwn2kF7pY7v23cc00)
 
 ### Database (Supabase PostgreSQL)
 
