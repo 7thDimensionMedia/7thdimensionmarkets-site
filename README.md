@@ -145,7 +145,7 @@ The key number is 11.0x. The strategy generated 11 times more return per unit of
 
 ## 📄 Documentation
 
-For the complete mathematical framework, historical exhibits across all four worlds, the confidence scoring derivation, and full backtesting methodology, refer to The Ripple Effect v3.0 white paper included in this repository.
+For the complete mathematical framework, historical exhibits across all four worlds, the confidence scoring derivation, and full backtesting methodology, refer to The_Ripple_Effect_v3.pdf white paper included in this repository and on 7thdimensionmarkets.com.
 
 ---
 
