@@ -107,6 +107,7 @@ a:hover { color: #79c0ff; }
 .dot-extreme { background: #f85149; }
 .dot-severe { background: #d29922; }
 .dot-moderate { background: #4db8b8; }
+.dot-watching { background: #8b949e; }
 
 /* ── Data Tables (matching email) ──────────────────── */
 .data-table {
@@ -715,7 +716,8 @@ a:hover { color: #79c0ff; }
       function severityClass(absZ) {
         if (absZ >= 3.0) return { label: "Extreme", dot: "dot-extreme", color: "#f85149" };
         if (absZ >= 2.0) return { label: "Severe",  dot: "dot-severe",  color: "#d29922" };
-        return { label: "Moderate", dot: "dot-moderate", color: "#4db8b8" };
+        if (absZ >= 1.5) return { label: "Moderate", dot: "dot-moderate", color: "#4db8b8" };
+        return { label: "Watching", dot: "dot-watching", color: "#8b949e" };
       }
 
       function formatUpdated(ts) {
@@ -727,7 +729,7 @@ a:hover { color: #79c0ff; }
       async function loadShocks() {
         try {
           const res = await fetch(
-            `${SUPABASE_URL}/rest/v1/latest_shocks?select=*&order=z_score_abs.desc&limit=3`,
+            `${SUPABASE_URL}/rest/v1/latest_shocks?select=*&order=z_score_abs.desc&limit=5`,
             { headers: { "apikey": SUPABASE_ANON, "Authorization": "Bearer " + SUPABASE_ANON } }
           );
           if (!res.ok) throw new Error("HTTP " + res.status);
