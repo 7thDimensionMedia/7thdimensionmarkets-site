@@ -586,6 +586,49 @@ a:hover { color: #79c0ff; }
   text-align: right;
 }
 
+/* ── Coverage Detail Grid ─────────────────────────── */
+.coverage-categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 32px;
+}
+.cov-cat {
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 10px;
+  padding: 20px;
+}
+.cov-cat h4 {
+  font-size: 0.72rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #4db8b8;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.cov-cat ul {
+  list-style: none;
+  padding: 0;
+}
+.cov-cat li {
+  font-size: 0.8rem;
+  color: #8b949e;
+  padding: 3px 0;
+  font-family: 'JetBrains Mono', monospace;
+}
+.cov-cat li span {
+  color: #e6edf3;
+  font-weight: 500;
+}
+.cov-cat .count {
+  font-size: 0.68rem;
+  color: #484f58;
+  margin-top: 8px;
+  border-top: 1px solid #21262d;
+  padding-top: 8px;
+}
+
 /* ── Divider ───────────────────────────────────────── */
 .divider {
   border: none;
@@ -600,6 +643,7 @@ a:hover { color: #79c0ff; }
   .stats-bar { grid-template-columns: repeat(2, 1fr); }
   .method-grid { grid-template-columns: repeat(2, 1fr); }
   .worlds-grid { grid-template-columns: repeat(2, 1fr); }
+  .coverage-categories { grid-template-columns: repeat(2, 1fr); }
   .pricing-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
   .section { padding: 56px 0; }
   .card { padding: 24px 20px; }
@@ -639,6 +683,7 @@ a:hover { color: #79c0ff; }
     <div class="nav-links">
       <a href="#methodology">Methodology</a>
       <a href="#worlds">Coverage</a>
+      <a href="coverage.html">Full Coverage</a>
       <a href="#case-study">Case Study</a>
       <a href="#pricing">Pricing</a>
       <a href="The_Ripple_Effect_v3.pdf" target="_blank">White Paper</a>
@@ -884,9 +929,9 @@ a:hover { color: #79c0ff; }
     <p class="section-sub">Every major market vertical. Open markets update hourly — live data, not end-of-day.</p>
     <div class="worlds-grid">
       <div class="world-card">
-        <div class="num">31</div>
+        <div class="num">70</div>
         <h3>Global Macro</h3>
-        <p>USD, Commodities, FX, Indices &middot; 90d</p>
+        <p>Indices, FX, Commodities, Rates, Country ETFs &middot; 90d</p>
       </div>
       <div class="world-card">
         <div class="num">154</div>
@@ -904,6 +949,85 @@ a:hover { color: #79c0ff; }
         <p>GICS sectors, 25yr history &middot; 90d</p>
       </div>
     </div>
+
+    <!-- World 1 Detail -->
+    <div style="margin-top: 40px;">
+      <h3 style="font-size: 1.1rem; color: #e6edf3; margin-bottom: 6px;">What&rsquo;s in the Free Tier?</h3>
+      <p style="font-size: 0.88rem; color: #8b949e; margin-bottom: 4px;">World 1: Global Macro covers 70 instruments across every major asset class and region &mdash; no paywall.</p>
+      <p style="font-size: 0.78rem; color: #484f58; margin-bottom: 0;"><a href="coverage.html" style="color: #4db8b8;">View full coverage across all 4 worlds &rarr;</a></p>
+    </div>
+
+    <div class="coverage-categories">
+
+      <div class="cov-cat">
+        <h4>Global Indices</h4>
+        <ul>
+          <li><span>S&amp;P 500</span> &middot; Nasdaq 100 &middot; Russell 2K</li>
+          <li><span>Euro Stoxx 50</span> &middot; DAX &middot; CAC 40</li>
+          <li><span>FTSE 100</span> &middot; Nikkei 225 &middot; Hang Seng</li>
+          <li><span>KOSPI</span> &middot; Sensex &middot; ASX 200</li>
+          <li><span>Bovespa</span> &middot; TSX</li>
+        </ul>
+        <div class="count">14 indices</div>
+      </div>
+
+      <div class="cov-cat">
+        <h4>Country ETFs</h4>
+        <ul>
+          <li><span>Brazil</span> &middot; South Korea &middot; Taiwan</li>
+          <li><span>India</span> &middot; Germany &middot; UK</li>
+          <li><span>Australia</span> &middot; Canada &middot; Singapore</li>
+          <li><span>Mexico</span> &middot; Turkey &middot; Saudi Arabia</li>
+        </ul>
+        <div class="count">12 ETFs</div>
+      </div>
+
+      <div class="cov-cat">
+        <h4>FX: G10 + EM</h4>
+        <ul>
+          <li><span>EUR</span> &middot; JPY &middot; GBP &middot; AUD</li>
+          <li><span>CAD</span> &middot; CHF &middot; NZD &middot; EUR/GBP</li>
+          <li><span>CNY</span> &middot; MXN &middot; BRL &middot; ZAR</li>
+          <li><span>TRY</span> &middot; INR &middot; SGD</li>
+        </ul>
+        <div class="count">15 pairs</div>
+      </div>
+
+      <div class="cov-cat">
+        <h4>Commodities</h4>
+        <ul>
+          <li><span>WTI</span> &middot; Brent &middot; Nat Gas &middot; Gasoline</li>
+          <li><span>Heating Oil</span></li>
+          <li><span>Gold</span> &middot; Silver &middot; Copper &middot; Platinum</li>
+          <li><span>Palladium</span></li>
+          <li><span>Wheat</span> &middot; Corn &middot; Soybeans &middot; Coffee</li>
+          <li><span>Cocoa</span> &middot; Sugar &middot; Cotton &middot; Cattle</li>
+        </ul>
+        <div class="count">18 contracts</div>
+      </div>
+
+      <div class="cov-cat">
+        <h4>Rates &amp; Bonds</h4>
+        <ul>
+          <li><span>US Dollar Index</span> (UUP)</li>
+          <li><span>20yr Bond ETF</span> (TLT)</li>
+          <li><span>10yr Note Futures</span> (ZN)</li>
+          <li><span>30yr / 10yr / 5yr / 13wk</span> Yields</li>
+        </ul>
+        <div class="count">7 instruments</div>
+      </div>
+
+      <div class="cov-cat">
+        <h4>Crypto &amp; Vol</h4>
+        <ul>
+          <li><span>Bitcoin</span> &middot; Ethereum</li>
+          <li><span>VIX Index</span> &middot; VXX ETN</li>
+        </ul>
+        <div class="count">4 instruments</div>
+      </div>
+
+    </div>
+
   </div>
 </section>
 
@@ -979,7 +1103,7 @@ a:hover { color: #79c0ff; }
         <div class="price-amount">$0 <span class="period">/ forever</span></div>
         <p class="price-desc">Explore World 1 (Global Macro) with full analytical toolkit.</p>
         <ul class="price-features">
-          <li><span class="check">&#10003;</span> 31 macro assets</li>
+          <li><span class="check">&#10003;</span> 70 macro assets</li>
           <li><span class="check">&#10003;</span> Live Z-score shock scanner</li>
           <li><span class="check">&#10003;</span> Cross-asset impulse matrix</li>
           <li><span class="check">&#10003;</span> Regime detection</li>
