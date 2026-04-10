@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coverage — Earth Scanner | 736 Assets Across 4 Worlds</title>
+<meta name="description" content="Full asset coverage for Earth Scanner: 70 global macro instruments, 154 altcoins, 503 S&P 500 equities, and 11 sector ETFs. Updated hourly.">
+<link rel="icon" type="image/png" href="icon7.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  color: #c9d1d9;
+  background: #0d1117;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+a { color: #58a6ff; text-decoration: none; transition: all 0.2s; }
+a:hover { color: #79c0ff; }
+.container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+.mono { font-family: 'JetBrains Mono', monospace; }
+.teal { color: #4db8b8; }
+.gold { color: #d4a843; }
+
+/* ── Navbar ────────────────────────────────────────── */
+.navbar {
+  position: fixed; top: 0; width: 100%; z-index: 100;
+  padding: 14px 0;
+  backdrop-filter: blur(16px);
+  background: rgba(13, 17, 23, 0.9);
+  border-bottom: 1px solid #21262d;
+}
+.navbar .container { display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-weight: 800; font-size: 1.05rem; color: #e6edf3; letter-spacing: -0.3px; }
+.nav-logo-img { height: 36px; width: auto; display: block; }
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-links a { font-size: 0.82rem; color: #8b949e; font-weight: 500; }
+.nav-links a:hover { color: #e6edf3; }
+.nav-cta {
+  padding: 7px 18px;
+  background: linear-gradient(135deg, #d4a843, #b8922e);
+  color: #0d1117 !important; border-radius: 6px;
+  font-size: 0.82rem; font-weight: 600;
+}
+.mobile-toggle { display: none; background: none; border: none; cursor: pointer; }
+.mobile-toggle span { display: block; width: 20px; height: 2px; background: #8b949e; margin: 4px 0; transition: 0.3s; }
+
+/* ── Page Header ──────────────────────────────────── */
+.page-header {
+  padding: 130px 0 48px;
+  text-align: center;
+}
+.page-header h1 {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 800; color: #e6edf3;
+  line-height: 1.2; margin-bottom: 12px;
+}
+.page-header p { font-size: 0.95rem; color: #8b949e; max-width: 600px; margin: 0 auto; }
+
+/* ── Stats Bar ────────────────────────────────────── */
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin: 32px 0 48px;
+}
+.stat-card {
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 10px;
+  padding: 20px 16px;
+  text-align: center;
+}
+.stat-card .num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.6rem; font-weight: 700; color: #4db8b8;
+}
+.stat-card .label {
+  font-size: 0.7rem; color: #484f58; margin-top: 4px;
+  text-transform: uppercase; letter-spacing: 0.5px;
+}
+
+/* ── World Section ────────────────────────────────── */
+.world-section {
+  margin-bottom: 56px;
+}
+.world-header {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+.world-header h2 {
+  font-size: 1.3rem; font-weight: 700; color: #e6edf3;
+}
+.world-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem; font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+.badge-free {
+  background: rgba(77, 184, 184, 0.12);
+  color: #4db8b8;
+  border: 1px solid rgba(77, 184, 184, 0.2);
+}
+.badge-pro {
+  background: rgba(212, 168, 67, 0.12);
+  color: #d4a843;
+  border: 1px solid rgba(212, 168, 67, 0.2);
+}
+.world-desc {
+  font-size: 0.88rem; color: #8b949e; margin-bottom: 20px;
+}
+.world-meta {
+  font-size: 0.75rem; color: #484f58;
+  font-family: 'JetBrains Mono', monospace;
+  margin-bottom: 20px;
+}
+.world-meta span { margin-right: 20px; }
+
+/* ── Category Grid ────────────────────────────────── */
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+.cat-card {
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 10px;
+  padding: 18px;
+}
+.cat-card h4 {
+  font-size: 0.7rem; letter-spacing: 1.5px;
+  text-transform: uppercase; color: #4db8b8;
+  margin-bottom: 10px; font-weight: 600;
+}
+.cat-card ul { list-style: none; padding: 0; }
+.cat-card li {
+  font-size: 0.78rem; color: #8b949e; padding: 2px 0;
+}
+.cat-card li strong { color: #e6edf3; font-weight: 600; }
+.cat-card .cat-count {
+  font-size: 0.68rem; color: #484f58;
+  margin-top: 8px; border-top: 1px solid #21262d;
+  padding-top: 8px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ── Sector Table (World 3) ───────────────────────── */
+.sector-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+}
+.sector-chip {
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 8px;
+  padding: 14px 16px;
+  text-align: center;
+}
+.sector-chip .num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.1rem; font-weight: 700; color: #4db8b8;
+}
+.sector-chip .label {
+  font-size: 0.75rem; color: #8b949e; margin-top: 2px;
+}
+
+/* ── Divider ──────────────────────────────────────── */
+.divider {
+  border: none;
+  border-top: 1px solid #21262d;
+  margin: 0 0 48px;
+}
+
+/* ── CTA ──────────────────────────────────────────── */
+.btn {
+  display: inline-block; padding: 14px 36px; border-radius: 8px;
+  font-weight: 600; font-size: 0.92rem; transition: all 0.25s;
+  cursor: pointer; border: none; text-align: center;
+}
+.btn-teal {
+  background: linear-gradient(135deg, #1a7a7a, #2ba3a3);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(26, 122, 122, 0.25);
+}
+.btn-teal:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(26, 122, 122, 0.4);
+  color: #fff;
+}
+.btn-outline {
+  background: transparent; color: #8b949e;
+  border: 1px solid #30363d;
+}
+.btn-outline:hover { border-color: #4db8b8; color: #4db8b8; }
+
+/* ── Footer ───────────────────────────────────────── */
+.footer { padding: 40px 0; border-top: 1px solid #21262d; }
+.footer-inner {
+  display: flex; justify-content: space-between;
+  align-items: center; flex-wrap: wrap; gap: 16px;
+}
+.footer p { font-size: 0.75rem; color: #30363d; }
+.footer .disclaimer {
+  font-size: 0.68rem; color: #21262d;
+  max-width: 500px; text-align: right;
+}
+
+/* ── Responsive ───────────────────────────────────── */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .mobile-toggle { display: block; }
+  .stats-bar { grid-template-columns: repeat(2, 1fr); }
+  .cat-grid { grid-template-columns: repeat(2, 1fr); }
+  .sector-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-inner { flex-direction: column; text-align: center; }
+  .footer .disclaimer { text-align: center; }
+}
+@media (max-width: 480px) {
+  .stats-bar { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .cat-grid { grid-template-columns: 1fr; }
+  .sector-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ── Nav mobile ───────────────────────────────────── */
+.nav-links.show {
+  display: flex !important;
+  flex-direction: column;
+  position: absolute; top: 100%; left: 0; right: 0;
+  background: rgba(13, 17, 23, 0.98);
+  border-bottom: 1px solid #21262d;
+  padding: 16px 24px; gap: 12px;
+}
+</style>
+</head>
+<body>
+
+<!-- ── Navbar ──────────────────────────────────────── -->
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="nav-logo" style="display:flex;align-items:center;gap:2px;"><img src="icon7.png" alt="7" class="nav-logo-img">th Dimension Markets</a>
+    <div class="nav-links">
+      <a href="index.html#methodology">Methodology</a>
+      <a href="index.html#worlds">Coverage</a>
+      <a href="index.html#case-study">Case Study</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="The_Ripple_Effect_v3.pdf" target="_blank">White Paper</a>
+      <a href="https://earth-scanner-v2-xnxaxfjvvnarezf3h228mu.streamlit.app" class="nav-cta" target="_blank">Try Free &rarr;</a>
+    </div>
+    <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ── Page Header ────────────────────────────────── -->
+<section class="page-header">
+  <div class="container">
+    <h1>Full Asset Coverage</h1>
+    <p>Every instrument Earth Scanner monitors &mdash; across all four worlds. Updated hourly during market hours.</p>
+
+    <div class="stats-bar">
+      <div class="stat-card">
+        <div class="num">736</div>
+        <div class="label">Unique Assets</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">4</div>
+        <div class="label">Worlds</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">24/7</div>
+        <div class="label">Crypto Monitoring</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">60 min</div>
+        <div class="label">Update Cycle</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+
+<!-- ════════════════════════════════════════════════════
+     WORLD 1: GLOBAL MACRO
+     ════════════════════════════════════════════════════ -->
+<div class="world-section" id="world-1">
+  <div class="world-header">
+    <h2>World 1: Global Macro</h2>
+    <span class="world-badge badge-free">FREE TIER</span>
+  </div>
+  <p class="world-desc">Macro instruments spanning every major economy, asset class, and currency. The full macro dashboard &mdash; no paywall required.</p>
+  <div class="world-meta">
+    <span>70 instruments</span>
+    <span>90-day baseline</span>
+    <span>yfinance data</span>
+  </div>
+
+  <div class="cat-grid">
+
+    <div class="cat-card">
+      <h4>Global Equity Indices</h4>
+      <ul>
+        <li><strong>S&amp;P 500</strong> (^GSPC)</li>
+        <li><strong>Nasdaq 100</strong> (^NDX)</li>
+        <li><strong>Russell 2000</strong> (^RUT)</li>
+        <li><strong>Euro Stoxx 50</strong> (^STOXX50E)</li>
+        <li><strong>DAX</strong> (^GDAXI)</li>
+        <li><strong>CAC 40</strong> (^FCHI)</li>
+        <li><strong>FTSE 100</strong> (^FTSE)</li>
+        <li><strong>Nikkei 225</strong> (^N225)</li>
+        <li><strong>Hang Seng</strong> (^HSI)</li>
+        <li><strong>KOSPI</strong> (^KS11)</li>
+        <li><strong>BSE Sensex</strong> (^BSESN)</li>
+        <li><strong>ASX 200</strong> (^AXJO)</li>
+        <li><strong>Bovespa</strong> (^BVSP)</li>
+        <li><strong>TSX Composite</strong> (^GSPTSE)</li>
+      </ul>
+      <div class="cat-count">14 indices</div>
+    </div>
+
+    <div class="cat-card">
+      <h4>Country ETFs</h4>
+      <ul>
+        <li><strong>Brazil</strong> (EWZ)</li>
+        <li><strong>South Korea</strong> (EWY)</li>
+        <li><strong>Taiwan</strong> (EWT)</li>
+        <li><strong>India</strong> (INDA)</li>
+        <li><strong>Germany</strong> (EWG)</li>
+        <li><strong>United Kingdom</strong> (EWU)</li>
+        <li><strong>Australia</strong> (EWA)</li>
+        <li><strong>Canada</strong> (EWC)</li>
+        <li><strong>Singapore</strong> (EWS)</li>
+        <li><strong>Mexico</strong> (EWW)</li>
+        <li><strong>Turkey</strong> (TUR)</li>
+        <li><strong>Saudi Arabia</strong> (KSA)</li>
+      </ul>
+      <div class="cat-count">12 ETFs</div>
+    </div>
+
+    <div class="cat-card">
+      <h4>Energy</h4>
+      <ul>
+        <li><strong>WTI Crude</strong> (CL=F)</li>
+        <li><strong>Brent Crude</strong> (BZ=F)</li>
+        <li><strong>Natural Gas</strong> (NG=F)</li>
+        <li><strong>Gasoline (RBOB)</strong> (RB=F)</li>
+        <li><strong>Heating Oil</strong> (HO=F)</li>
+      </ul>
+      <div class="cat-count">5 contracts</div>
+    </div>
+
+    <div class="cat-card">
+      <h4>Metals</h4>
+      <ul>
+        <li><strong>Gold</strong> (GC=F)</li>
+        <li><strong>Silver</strong> (SI=F)</li>
+        <li><strong>Copper</strong> (HG=F)</li>
+        <li><strong>Platinum</strong> (PL=F)</li>
+        <li><strong>Palladium</strong> (PA=F)</li>
+      </ul>
+      <div class="cat-count">5 contracts</div>
+    </div>
+
+    <div class="cat-card">
+      <h4>Agriculture</h4>
+      <ul>
+        <li><strong>Wheat</strong> (ZW=F)</li>
+        <li><strong>Corn</strong> (ZC=F)</li>
+        <li><strong>Soybeans</strong> (ZS=F)</li>
+        <li><strong>Coffee</strong> (KC=F)</li>
+        <li><strong>Cocoa</strong> (CC=F)</li>
+        <li><strong>Sugar</strong> (SB=F)</li>
+        <li><strong>Cotton</strong> (CT=F)</li>
+        <li><strong>Live Cattle</strong> (LC=F)</li>
+      </ul>
+      <div class="cat-count">8 contracts</div>
+    </div>
+
+    <div class="cat-card">
+      <h4>Rates &amp; Bonds</h4>
+      <ul>
+        <li><strong>US Dollar Index</strong> (UUP)</li>
+        <li><strong>20-Year Bond ETF</strong> (TLT)</li>
+        <li><strong>10-Year Yield</strong> (^TNX)</li>
+        <li><strong>10-Year Note Futures</strong> (ZN=F)</li>
+        <li><strong>30-Year Yield</strong> (^TYX)</li>
+        <li><strong>5-Year Yield</strong> (^FVX)</li>
+        <li><strong>13-Week T-Bill</strong> (^IRX)</li>
+      </ul>
+      <div class="cat-count">7 instruments</div>
+    </div>
+
+    <div class="cat-card">
+      <h4>FX: G10</h4>
+      <ul>
+        <li><strong>EUR/USD</strong></li>
+        <li><strong>USD/JPY</strong></li>
+        <li><strong>GBP/USD</strong></li>
+        <li><strong>AUD/USD</strong></li>
+        <li><strong>USD/CAD</strong></li>
+        <li><strong>USD/CHF</strong></li>
+        <li><strong>NZD/USD</strong></li>
+        <li><strong>EUR/GBP</strong></li>
+      </ul>
+      <div class="cat-count">8 pairs</div>
+    </div>
+
+    <div class="cat-card">
+      <h4>FX: Emerging Markets</h4>
+      <ul>
+        <li><strong>USD/CNY</strong> &middot; China</li>
+        <li><strong>USD/MXN</strong> &middot; Mexico</li>
+        <li><strong>USD/BRL</strong> &middot; Brazil</li>
+        <li><strong>USD/ZAR</strong> &middot; South Africa</li>
+        <li><strong>USD/TRY</strong> &middot; Turkey</li>
+        <li><strong>USD/INR</strong> &middot; India</li>
+        <li><strong>USD/SGD</strong> &middot; Singapore</li>
+      </ul>
+      <div class="cat-count">7 pairs</div>
+    </div>
+
+    <div class="cat-card">
+      <h4>Crypto &amp; Volatility</h4>
+      <ul>
+        <li><strong>Bitcoin</strong> (BTC-USD)</li>
+        <li><strong>Ethereum</strong> (ETH-USD)</li>
+        <li><strong>VIX Index</strong> (^VIX)</li>
+        <li><strong>VXX ETN</strong> (VXX)</li>
+      </ul>
+      <div class="cat-count">4 instruments</div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ════════════════════════════════════════════════════
+     WORLD 2: ALT-CRYPTO
+     ════════════════════════════════════════════════════ -->
+<div class="world-section" id="world-2">
+  <div class="world-header">
+    <h2>World 2: Alt-Crypto 150</h2>
+    <span class="world-badge badge-pro">PRO</span>
+  </div>
+  <p class="world-desc">154 altcoins across 9 categories &mdash; from DeFi blue-chips to high-volume meme tokens. Crypto markets are monitored 24/7 with a faster 15-day baseline tuned for digital-asset volatility.</p>
+  <div class="world-meta">
+    <span>154 tokens</span>
+    <span>15-day baseline</span>
+    <span>Binance + yfinance data</span>
+  </div>
+
+  <div class="cat-grid">
+
+    <div class="cat-card">
+      <h4>Emerging Layer 1s &amp; 2s</h4>
+      <ul>
+        <li><strong>ADA</strong> &middot; ALGO &middot; APT &middot; ARB &middot; ASTR</li>
+        <li><strong>ATOM</strong> &middot; AVAX &middot; DOT &middot; EGLD &middot; FTM</li>
+        <li><strong>HBAR</strong> &middot; ICP &middot; INJ &middot; MINA &middot; NEAR</li>
+        <li><strong>OP</strong> &middot; SEI &middot; SOL &middot; SUI &middot; TON</li>
+        <li>+ 27 more</li>
+      </ul>
+      <div class="cat-count">47 tokens</div>
+    </div>
+
+    <div class="cat-card">
+      <h4>DeFi (DEXs &amp; Oracles)</h4>
+      <ul>
+        <li><strong>AAVE</strong> &middot; CAKE &middot; CRV &middot; DYDX &middot; ENA</li>
+        <li><strong>GRT</strong> &middot; JUP &middot; LINK &middot; MKR &middot; SNX</li>
+        <li><strong>UNI</strong> &middot; SUSHI &middot; YFI &middot; 1INCH</li>
+        <li>+ 19 more</li>
+      </ul>
+      <div class="cat-count">33 tokens</div>
+    </div>
+
+    <div class="cat-card">
+      <h4>DePIN &amp; Infrastructure</h4>
+      <ul>
+        <li><strong>FET</strong> &middot; FIL &middot; AR &middot; RENDER &middot; TAO</li>
+        <li><strong>AKT</strong> &middot; HNT &middot; THETA &middot; GRT &middot; IO</li>
+        <li>+ 11 more</li>
+      </ul>
+      <div class="cat-count">21 tokens</div>
+    </div>
+
+    <div class="cat-card">
+      <h4>High-Volume Memes</h4>
+      <ul>
+        <li><strong>DOGE</strong> &middot; SHIB &middot; PEPE &middot; BONK</li>
+        <li><strong>FLOKI</strong> &middot; WIF &middot; BRETT &middot; BOME</li>
+        <li>+ 5 more</li>
+      </ul>
+      <div class="cat-count">13 tokens &middot; "Sentiment Shocks"</div>
+    </div>
+
+    <div class="cat-card">
+      <h4>GameFi &amp; Metaverse</h4>
+      <ul>
+        <li><strong>AXS</strong> &middot; GALA &middot; IMX &middot; ILV &middot; SAND</li>
+        <li><strong>BEAM</strong> &middot; MANA &middot; PIXEL</li>
+        <li>+ 4 more</li>
+      </ul>
+      <div class="cat-count">12 tokens</div>
+    </div>
+
+    <div class="cat-card">
+      <h4>Liquid Staking &amp; Modular</h4>
+      <ul>
+        <li><strong>LDO</strong> &middot; EIGEN &middot; ETHFI &middot; TIA &middot; DYM</li>
+        <li><strong>MANTA</strong> &middot; ALT &middot; RPL &middot; SSV</li>
+      </ul>
+      <div class="cat-count">9 tokens (LST/LRT)</div>
+    </div>
+
+    <div class="cat-card">
+      <h4>Specialized / Niche</h4>
+      <ul>
+        <li><strong>RWA &amp; Privacy</strong></li>
+        <li>CHZ &middot; ONDO &middot; PENDLE &middot; XMR &middot; IP</li>
+        <li>+ 8 more</li>
+      </ul>
+      <div class="cat-count">13 tokens</div>
+    </div>
+
+    <div class="cat-card">
+      <h4>Interoperability</h4>
+      <ul>
+        <li><strong>RUNE</strong> &middot; ZRX &middot; AXL &middot; W</li>
+      </ul>
+      <div class="cat-count">4 tokens</div>
+    </div>
+
+    <div class="cat-card">
+      <h4>Core Majors</h4>
+      <ul>
+        <li><strong>BTC</strong> &middot; ETH</li>
+      </ul>
+      <div class="cat-count">2 tokens (also in World 1)</div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ════════════════════════════════════════════════════
+     WORLD 3: S&P 500
+     ════════════════════════════════════════════════════ -->
+<div class="world-section" id="world-3">
+  <div class="world-header">
+    <h2>World 3: S&amp;P 500 Universe</h2>
+    <span class="world-badge badge-pro">PRO</span>
+  </div>
+  <p class="world-desc">Every constituent of the S&amp;P 500 index. Individual stock-level shock detection with cross-asset impulse mapping against all other worlds.</p>
+  <div class="world-meta">
+    <span>503 equities</span>
+    <span>90-day baseline</span>
+    <span>yfinance data</span>
+  </div>
+
+  <div class="sector-grid">
+    <div class="sector-chip">
+      <div class="num">79</div>
+      <div class="label">Industrials</div>
+    </div>
+    <div class="sector-chip">
+      <div class="num">76</div>
+      <div class="label">Financials</div>
+    </div>
+    <div class="sector-chip">
+      <div class="num">71</div>
+      <div class="label">Info Technology</div>
+    </div>
+    <div class="sector-chip">
+      <div class="num">60</div>
+      <div class="label">Health Care</div>
+    </div>
+    <div class="sector-chip">
+      <div class="num">48</div>
+      <div class="label">Consumer Disc.</div>
+    </div>
+    <div class="sector-chip">
+      <div class="num">36</div>
+      <div class="label">Consumer Staples</div>
+    </div>
+    <div class="sector-chip">
+      <div class="num">31</div>
+      <div class="label">Real Estate</div>
+    </div>
+    <div class="sector-chip">
+      <div class="num">31</div>
+      <div class="label">Utilities</div>
+    </div>
+    <div class="sector-chip">
+      <div class="num">26</div>
+      <div class="label">Materials</div>
+    </div>
+    <div class="sector-chip">
+      <div class="num">23</div>
+      <div class="label">Communication</div>
+    </div>
+    <div class="sector-chip">
+      <div class="num">22</div>
+      <div class="label">Energy</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ════════════════════════════════════════════════════
+     WORLD 4: SECTOR ROTATION
+     ════════════════════════════════════════════════════ -->
+<div class="world-section" id="world-4">
+  <div class="world-header">
+    <h2>World 4: Sector Rotation</h2>
+    <span class="world-badge badge-pro">PRO</span>
+  </div>
+  <p class="world-desc">SPDR Select Sector ETFs covering all 11 GICS sectors plus a total-market benchmark. Designed for detecting sector-level rotational shocks and macro regime shifts.</p>
+  <div class="world-meta">
+    <span>11 ETFs</span>
+    <span>90-day baseline</span>
+    <span>25+ years of history</span>
+  </div>
+
+  <div class="cat-grid" style="grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));">
+    <div class="cat-card" style="text-align:center; padding:14px;">
+      <h4 style="margin-bottom:4px;">XLK</h4>
+      <li style="list-style:none; font-size:0.8rem; color:#8b949e;">Technology</li>
+    </div>
+    <div class="cat-card" style="text-align:center; padding:14px;">
+      <h4 style="margin-bottom:4px;">XLF</h4>
+      <li style="list-style:none; font-size:0.8rem; color:#8b949e;">Financials</li>
+    </div>
+    <div class="cat-card" style="text-align:center; padding:14px;">
+      <h4 style="margin-bottom:4px;">XLE</h4>
+      <li style="list-style:none; font-size:0.8rem; color:#8b949e;">Energy</li>
+    </div>
+    <div class="cat-card" style="text-align:center; padding:14px;">
+      <h4 style="margin-bottom:4px;">XLV</h4>
+      <li style="list-style:none; font-size:0.8rem; color:#8b949e;">Healthcare</li>
+    </div>
+    <div class="cat-card" style="text-align:center; padding:14px;">
+      <h4 style="margin-bottom:4px;">XLI</h4>
+      <li style="list-style:none; font-size:0.8rem; color:#8b949e;">Industrials</li>
+    </div>
+    <div class="cat-card" style="text-align:center; padding:14px;">
+      <h4 style="margin-bottom:4px;">XLP</h4>
+      <li style="list-style:none; font-size:0.8rem; color:#8b949e;">Consumer Staples</li>
+    </div>
+    <div class="cat-card" style="text-align:center; padding:14px;">
+      <h4 style="margin-bottom:4px;">XLY</h4>
+      <li style="list-style:none; font-size:0.8rem; color:#8b949e;">Consumer Disc.</li>
+    </div>
+    <div class="cat-card" style="text-align:center; padding:14px;">
+      <h4 style="margin-bottom:4px;">XLB</h4>
+      <li style="list-style:none; font-size:0.8rem; color:#8b949e;">Materials</li>
+    </div>
+    <div class="cat-card" style="text-align:center; padding:14px;">
+      <h4 style="margin-bottom:4px;">XLU</h4>
+      <li style="list-style:none; font-size:0.8rem; color:#8b949e;">Utilities</li>
+    </div>
+    <div class="cat-card" style="text-align:center; padding:14px;">
+      <h4 style="margin-bottom:4px;">XLRE</h4>
+      <li style="list-style:none; font-size:0.8rem; color:#8b949e;">Real Estate</li>
+    </div>
+    <div class="cat-card" style="text-align:center; padding:14px;">
+      <h4 style="margin-bottom:4px;">VTI</h4>
+      <li style="list-style:none; font-size:0.8rem; color:#8b949e;">Total Market</li>
+    </div>
+  </div>
+</div>
+
+<!-- ── CTA ─────────────────────────────────────────── -->
+<div style="text-align: center; padding: 48px 0 64px;">
+  <p style="font-size: 0.95rem; color: #8b949e; margin-bottom: 24px;">World 1 is free. Worlds 2&ndash;4 unlock with Pro.</p>
+  <a href="https://earth-scanner-v2-xnxaxfjvvnarezf3h228mu.streamlit.app" class="btn btn-teal" target="_blank">Try Earth Scanner Free &rarr;</a>
+  &nbsp;&nbsp;
+  <a href="index.html#pricing" class="btn btn-outline">View Pricing</a>
+</div>
+
+</div><!-- end .container -->
+
+<!-- ── Footer ──────────────────────────────────────── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <p>&copy; 2026 7th Dimension Markets</p>
+      <p class="disclaimer">Earth Scanner is an analytical and research tool. Nothing on this site constitutes investment advice. All historical performance data is backtested and does not guarantee future results.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
