@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>7th Dimension Markets — Earth Scanner</title>
-<meta name="description" content="Cross-asset impulse modeling and expected alpha. 700+ assets tracked with live hourly updates across macro, crypto, equities, and sector ETFs.">
+<meta name="description" content="Cross-asset impulse modeling and expected alpha. 700+ assets tracked with live hourly updates across macro, sectors, equities, and alts.">
 <link rel="icon" type="image/png" href="icon7.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -782,9 +782,9 @@ a:hover { color: #34d399; }
         <p>USD, Commodities, FX, & Indices</p>
       </div>
       <div class="world-card">
-        <div class="num">154</div>
-        <h3>Alt-Crypto</h3>
-        <p>13 categories across the universe</p>
+        <div class="num">11</div>
+        <h3>Sector Rotation</h3>
+        <p>GICS sectors & 25yr history</p>
       </div>
       <div class="world-card">
         <div class="num">503</div>
@@ -792,9 +792,9 @@ a:hover { color: #34d399; }
         <p>Full S&P 500 monitoring</p>
       </div>
       <div class="world-card">
-        <div class="num">11</div>
-        <h3>Sector ETFs</h3>
-        <p>GICS sectors & 25yr history</p>
+        <div class="num">154</div>
+        <h3>Alts</h3>
+        <p>13 categories across the universe</p>
       </div>
     </div>
     <div style="text-align: center; margin-top: 48px;">
@@ -941,9 +941,9 @@ const SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFz
 
 const WORLD_LABELS = {
   "w_maj":     "World 1: Macro",
-  "w_alt":     "World 2: Alt-Crypto",
+  "w_sectors": "World 2: Sectors",
   "w_stocks":  "World 3: S&P 500",
-  "w_sectors": "World 4: Sectors",
+  "w_alt":     "World 4: Alts",
 };
 
 const REGIME_EMOJI = {
@@ -967,7 +967,7 @@ function formatUpdated(ts) {
 async function loadShocks() {
   try {
     const res = await fetch(
-      `${SUPABASE_URL}/rest/v1/latest_shocks?select=*&order=z_score_abs.desc&limit=3`,
+      `${SUPABASE_URL}/rest/v1/latest_shocks?select=*&order=z_score_abs.desc&limit=5`,
       { headers: { "apikey": SUPABASE_ANON, "Authorization": "Bearer " + SUPABASE_ANON } }
     );
     if (!res.ok) throw new Error("HTTP " + res.status);
@@ -1007,9 +1007,9 @@ async function loadShocks() {
 
   } catch (e) {
     document.getElementById("live-shocks-body").innerHTML = `
-      <tr><td class="asset">DRIFT</td><td style="color:#71717a;">World 2: Alt-Crypto</td><td class="zscore red">Z = -3.32&sigma;</td><td style="color:#ef4444;">▼ 18.3%</td><td><span class="dot dot-extreme"></span>Extreme</td></tr>
-      <tr><td class="asset">MINA</td><td style="color:#71717a;">World 2: Alt-Crypto</td><td class="zscore orange">Z = +2.95&sigma;</td><td style="color:#10b981;">▲ 12.5%</td><td><span class="dot dot-severe"></span>Severe</td></tr>
-      <tr><td class="asset">SEI</td><td style="color:#71717a;">World 2: Alt-Crypto</td><td class="zscore orange">Z = +2.58&sigma;</td><td style="color:#10b981;">▲ 8.3%</td><td><span class="dot dot-severe"></span>Severe</td></tr>`;
+      <tr><td class="asset">DRIFT</td><td style="color:#71717a;">World 4: Alts</td><td class="zscore red">Z = -3.32&sigma;</td><td style="color:#ef4444;">▼ 18.3%</td><td><span class="dot dot-extreme"></span>Extreme</td></tr>
+      <tr><td class="asset">MINA</td><td style="color:#71717a;">World 4: Alts</td><td class="zscore orange">Z = +2.95&sigma;</td><td style="color:#10b981;">▲ 12.5%</td><td><span class="dot dot-severe"></span>Severe</td></tr>
+      <tr><td class="asset">SEI</td><td style="color:#71717a;">World 4: Alts</td><td class="zscore orange">Z = +2.58&sigma;</td><td style="color:#10b981;">▲ 8.3%</td><td><span class="dot dot-severe"></span>Severe</td></tr>`;
     document.getElementById("live-updated").textContent = "Sample data";
   }
 }
