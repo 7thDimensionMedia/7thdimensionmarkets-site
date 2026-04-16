@@ -8,58 +8,82 @@
 <link rel="icon" type="image/png" href="icon7.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
+/* ── Reset ─────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
   font-family: 'Inter', -apple-system, sans-serif;
-  color: #c9d1d9;
-  background: #0d1117;
+  color: #fafafa;
+  background: #09090b;
   line-height: 1.65;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
-a { color: #58a6ff; text-decoration: none; transition: all 0.2s; }
-a:hover { color: #79c0ff; }
+a { color: #10b981; text-decoration: none; transition: all 0.2s; }
+a:hover { color: #34d399; }
 .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
 .mono { font-family: 'JetBrains Mono', monospace; }
-.teal { color: #4db8b8; }
-.gold { color: #d4a843; }
+.emerald { color: #10b981; }
+
+/* ── Background Glow ───────────────────────────────── */
+.bg-glow {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 600px;
+  background: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
 
 /* ── Navbar ────────────────────────────────────────── */
 .navbar {
   position: fixed; top: 0; width: 100%; z-index: 100;
-  padding: 14px 0;
-  backdrop-filter: blur(16px);
-  background: rgba(13, 17, 23, 0.9);
-  border-bottom: 1px solid #21262d;
+  padding: 16px 0;
+  backdrop-filter: blur(20px);
+  background: rgba(9, 9, 11, 0.7);
+  border-bottom: 1px solid rgba(39, 39, 42, 0.5);
 }
 .navbar .container { display: flex; align-items: center; justify-content: space-between; }
-.nav-logo { font-weight: 800; font-size: 1.05rem; color: #e6edf3; letter-spacing: -0.3px; }
-.nav-logo-img { height: 36px; width: auto; display: block; }
-.nav-links { display: flex; gap: 28px; align-items: center; }
-.nav-links a { font-size: 0.82rem; color: #8b949e; font-weight: 500; }
-.nav-links a:hover { color: #e6edf3; }
-.nav-cta {
-  padding: 7px 18px;
-  background: linear-gradient(135deg, #d4a843, #b8922e);
-  color: #0d1117 !important; border-radius: 6px;
-  font-size: 0.82rem; font-weight: 600;
+.nav-logo {
+  display: flex; align-items: center; gap: 1px;
+  font-weight: 900; font-size: 1.25rem; color: #fafafa; letter-spacing: -0.05em;
 }
+.nav-logo-img {
+  height: 28px; width: auto; display: block;
+  filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.3));
+}
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-links a { font-size: 0.85rem; color: #a1a1aa; font-weight: 500; }
+.nav-links a:hover { color: #fafafa; }
+.nav-cta {
+  padding: 8px 20px;
+  background: #fafafa;
+  color: #09090b !important;
+  border-radius: 9999px;
+  font-size: 0.85rem; font-weight: 700;
+}
+.nav-cta:hover { background: #f4f4f5; transform: translateY(-1px); }
 .mobile-toggle { display: none; background: none; border: none; cursor: pointer; }
-.mobile-toggle span { display: block; width: 20px; height: 2px; background: #8b949e; margin: 4px 0; transition: 0.3s; }
+.mobile-toggle span { display: block; width: 20px; height: 2px; background: #a1a1aa; margin: 4px 0; transition: 0.3s; }
 
 /* ── Page Header ──────────────────────────────────── */
 .page-header {
-  padding: 130px 0 48px;
+  padding: 140px 0 56px;
   text-align: center;
+  position: relative;
 }
 .page-header h1 {
-  font-size: clamp(1.8rem, 4vw, 2.6rem);
-  font-weight: 800; color: #e6edf3;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 800; color: #fafafa;
   line-height: 1.2; margin-bottom: 12px;
+  letter-spacing: -0.03em;
 }
-.page-header p { font-size: 0.95rem; color: #8b949e; max-width: 600px; margin: 0 auto; }
+.page-header p { font-size: 0.95rem; color: #a1a1aa; max-width: 600px; margin: 0 auto; }
 
 /* ── Stats Bar ────────────────────────────────────── */
 .stats-bar {
@@ -69,57 +93,49 @@ a:hover { color: #79c0ff; }
   margin: 32px 0 48px;
 }
 .stat-card {
-  background: #161b22;
-  border: 1px solid #21262d;
-  border-radius: 10px;
+  background: rgba(24, 24, 27, 0.6);
+  border: 1px solid rgba(39, 39, 42, 0.5);
+  backdrop-filter: blur(12px);
+  border-radius: 12px;
   padding: 20px 16px;
   text-align: center;
 }
 .stat-card .num {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 1.6rem; font-weight: 700; color: #4db8b8;
+  font-size: 1.6rem; font-weight: 700; color: #10b981;
 }
 .stat-card .label {
-  font-size: 0.7rem; color: #484f58; margin-top: 4px;
+  font-size: 0.7rem; color: #71717a; margin-top: 4px;
   text-transform: uppercase; letter-spacing: 0.5px;
 }
 
 /* ── World Section ────────────────────────────────── */
-.world-section {
-  margin-bottom: 56px;
-}
+.world-section { margin-bottom: 56px; }
 .world-header {
-  display: flex;
-  align-items: baseline;
-  gap: 16px;
-  margin-bottom: 8px;
-  flex-wrap: wrap;
+  display: flex; align-items: baseline; gap: 16px;
+  margin-bottom: 8px; flex-wrap: wrap;
 }
-.world-header h2 {
-  font-size: 1.3rem; font-weight: 700; color: #e6edf3;
-}
+.world-header h2 { font-size: 1.3rem; font-weight: 700; color: #fafafa; }
 .world-badge {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.72rem; font-weight: 600;
   padding: 3px 10px;
-  border-radius: 4px;
+  border-radius: 9999px;
   letter-spacing: 0.5px;
 }
 .badge-free {
-  background: rgba(77, 184, 184, 0.12);
-  color: #4db8b8;
-  border: 1px solid rgba(77, 184, 184, 0.2);
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.2);
 }
 .badge-pro {
-  background: rgba(212, 168, 67, 0.12);
-  color: #d4a843;
-  border: 1px solid rgba(212, 168, 67, 0.2);
+  background: rgba(16, 185, 129, 0.06);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.15);
 }
-.world-desc {
-  font-size: 0.88rem; color: #8b949e; margin-bottom: 20px;
-}
+.world-desc { font-size: 0.88rem; color: #a1a1aa; margin-bottom: 20px; }
 .world-meta {
-  font-size: 0.75rem; color: #484f58;
+  font-size: 0.75rem; color: #71717a;
   font-family: 'JetBrains Mono', monospace;
   margin-bottom: 20px;
 }
@@ -132,87 +148,92 @@ a:hover { color: #79c0ff; }
   gap: 12px;
 }
 .cat-card {
-  background: #161b22;
-  border: 1px solid #21262d;
-  border-radius: 10px;
+  background: rgba(24, 24, 27, 0.6);
+  border: 1px solid rgba(39, 39, 42, 0.5);
+  backdrop-filter: blur(12px);
+  border-radius: 12px;
   padding: 18px;
+  transition: border-color 0.2s;
 }
+.cat-card:hover { border-color: rgba(16, 185, 129, 0.25); }
 .cat-card h4 {
   font-size: 0.7rem; letter-spacing: 1.5px;
-  text-transform: uppercase; color: #4db8b8;
+  text-transform: uppercase; color: #10b981;
   margin-bottom: 10px; font-weight: 600;
 }
 .cat-card ul { list-style: none; padding: 0; }
-.cat-card li {
-  font-size: 0.78rem; color: #8b949e; padding: 2px 0;
-}
-.cat-card li strong { color: #e6edf3; font-weight: 600; }
+.cat-card li { font-size: 0.78rem; color: #a1a1aa; padding: 2px 0; }
+.cat-card li strong { color: #fafafa; font-weight: 600; }
 .cat-card .cat-count {
-  font-size: 0.68rem; color: #484f58;
-  margin-top: 8px; border-top: 1px solid #21262d;
+  font-size: 0.68rem; color: #71717a;
+  margin-top: 8px; border-top: 1px solid rgba(39, 39, 42, 0.5);
   padding-top: 8px;
   font-family: 'JetBrains Mono', monospace;
 }
 
-/* ── Sector Table (World 3) ───────────────────────── */
+/* ── Sector Grid (World 3) ────────────────────────── */
 .sector-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 10px;
 }
 .sector-chip {
-  background: #161b22;
-  border: 1px solid #21262d;
-  border-radius: 8px;
+  background: rgba(24, 24, 27, 0.6);
+  border: 1px solid rgba(39, 39, 42, 0.5);
+  backdrop-filter: blur(12px);
+  border-radius: 10px;
   padding: 14px 16px;
   text-align: center;
+  transition: border-color 0.2s;
 }
+.sector-chip:hover { border-color: rgba(16, 185, 129, 0.25); }
 .sector-chip .num {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 1.1rem; font-weight: 700; color: #4db8b8;
+  font-size: 1.1rem; font-weight: 700; color: #10b981;
 }
-.sector-chip .label {
-  font-size: 0.75rem; color: #8b949e; margin-top: 2px;
-}
+.sector-chip .label { font-size: 0.75rem; color: #a1a1aa; margin-top: 2px; }
 
 /* ── Divider ──────────────────────────────────────── */
 .divider {
   border: none;
-  border-top: 1px solid #21262d;
+  border-top: 1px solid rgba(39, 39, 42, 0.5);
   margin: 0 0 48px;
 }
 
-/* ── CTA ──────────────────────────────────────────── */
+/* ── Buttons ──────────────────────────────────────── */
 .btn {
-  display: inline-block; padding: 14px 36px; border-radius: 8px;
-  font-weight: 600; font-size: 0.92rem; transition: all 0.25s;
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 14px 32px; border-radius: 9999px;
+  font-weight: 600; font-size: 0.95rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer; border: none; text-align: center;
 }
 .btn-teal {
-  background: linear-gradient(135deg, #1a7a7a, #2ba3a3);
-  color: #fff;
-  box-shadow: 0 4px 16px rgba(26, 122, 122, 0.25);
+  background: #10b981;
+  color: #09090b;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
 }
 .btn-teal:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgba(26, 122, 122, 0.4);
-  color: #fff;
+  background: #34d399;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 0 30px rgba(16, 185, 129, 0.4);
+  color: #09090b;
 }
 .btn-outline {
-  background: transparent; color: #8b949e;
-  border: 1px solid #30363d;
+  background: transparent; color: #fafafa;
+  border: 1px solid rgba(39, 39, 42, 0.8);
 }
-.btn-outline:hover { border-color: #4db8b8; color: #4db8b8; }
+.btn-outline:hover { background: rgba(39, 39, 42, 0.5); border-color: #10b981; color: #fafafa; }
 
 /* ── Footer ───────────────────────────────────────── */
-.footer { padding: 40px 0; border-top: 1px solid #21262d; }
+.footer { padding: 40px 0; border-top: 1px solid rgba(39, 39, 42, 0.5); }
 .footer-inner {
   display: flex; justify-content: space-between;
   align-items: center; flex-wrap: wrap; gap: 16px;
 }
-.footer p { font-size: 0.75rem; color: #30363d; }
+.footer p { font-size: 0.75rem; color: #52525b; }
 .footer .disclaimer {
-  font-size: 0.68rem; color: #21262d;
+  font-size: 0.68rem; color: #3f3f46;
   max-width: 500px; text-align: right;
 }
 
@@ -237,13 +258,15 @@ a:hover { color: #79c0ff; }
   display: flex !important;
   flex-direction: column;
   position: absolute; top: 100%; left: 0; right: 0;
-  background: rgba(13, 17, 23, 0.98);
-  border-bottom: 1px solid #21262d;
+  background: rgba(9, 9, 11, 0.98);
+  border-bottom: 1px solid rgba(39, 39, 42, 0.5);
   padding: 16px 24px; gap: 12px;
 }
 </style>
 </head>
 <body>
+
+<div class="bg-glow"></div>
 
 <!-- ── Navbar ──────────────────────────────────────── -->
 <nav class="navbar">
@@ -644,54 +667,54 @@ a:hover { color: #79c0ff; }
   <div class="cat-grid" style="grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));">
     <div class="cat-card" style="text-align:center; padding:14px;">
       <h4 style="margin-bottom:4px;">XLK</h4>
-      <li style="list-style:none; font-size:0.8rem; color:#8b949e;">Technology</li>
+      <li style="list-style:none; font-size:0.8rem; color:#a1a1aa;">Technology</li>
     </div>
     <div class="cat-card" style="text-align:center; padding:14px;">
       <h4 style="margin-bottom:4px;">XLF</h4>
-      <li style="list-style:none; font-size:0.8rem; color:#8b949e;">Financials</li>
+      <li style="list-style:none; font-size:0.8rem; color:#a1a1aa;">Financials</li>
     </div>
     <div class="cat-card" style="text-align:center; padding:14px;">
       <h4 style="margin-bottom:4px;">XLE</h4>
-      <li style="list-style:none; font-size:0.8rem; color:#8b949e;">Energy</li>
+      <li style="list-style:none; font-size:0.8rem; color:#a1a1aa;">Energy</li>
     </div>
     <div class="cat-card" style="text-align:center; padding:14px;">
       <h4 style="margin-bottom:4px;">XLV</h4>
-      <li style="list-style:none; font-size:0.8rem; color:#8b949e;">Healthcare</li>
+      <li style="list-style:none; font-size:0.8rem; color:#a1a1aa;">Healthcare</li>
     </div>
     <div class="cat-card" style="text-align:center; padding:14px;">
       <h4 style="margin-bottom:4px;">XLI</h4>
-      <li style="list-style:none; font-size:0.8rem; color:#8b949e;">Industrials</li>
+      <li style="list-style:none; font-size:0.8rem; color:#a1a1aa;">Industrials</li>
     </div>
     <div class="cat-card" style="text-align:center; padding:14px;">
       <h4 style="margin-bottom:4px;">XLP</h4>
-      <li style="list-style:none; font-size:0.8rem; color:#8b949e;">Consumer Staples</li>
+      <li style="list-style:none; font-size:0.8rem; color:#a1a1aa;">Consumer Staples</li>
     </div>
     <div class="cat-card" style="text-align:center; padding:14px;">
       <h4 style="margin-bottom:4px;">XLY</h4>
-      <li style="list-style:none; font-size:0.8rem; color:#8b949e;">Consumer Disc.</li>
+      <li style="list-style:none; font-size:0.8rem; color:#a1a1aa;">Consumer Disc.</li>
     </div>
     <div class="cat-card" style="text-align:center; padding:14px;">
       <h4 style="margin-bottom:4px;">XLB</h4>
-      <li style="list-style:none; font-size:0.8rem; color:#8b949e;">Materials</li>
+      <li style="list-style:none; font-size:0.8rem; color:#a1a1aa;">Materials</li>
     </div>
     <div class="cat-card" style="text-align:center; padding:14px;">
       <h4 style="margin-bottom:4px;">XLU</h4>
-      <li style="list-style:none; font-size:0.8rem; color:#8b949e;">Utilities</li>
+      <li style="list-style:none; font-size:0.8rem; color:#a1a1aa;">Utilities</li>
     </div>
     <div class="cat-card" style="text-align:center; padding:14px;">
       <h4 style="margin-bottom:4px;">XLRE</h4>
-      <li style="list-style:none; font-size:0.8rem; color:#8b949e;">Real Estate</li>
+      <li style="list-style:none; font-size:0.8rem; color:#a1a1aa;">Real Estate</li>
     </div>
     <div class="cat-card" style="text-align:center; padding:14px;">
       <h4 style="margin-bottom:4px;">VTI</h4>
-      <li style="list-style:none; font-size:0.8rem; color:#8b949e;">Total Market</li>
+      <li style="list-style:none; font-size:0.8rem; color:#a1a1aa;">Total Market</li>
     </div>
   </div>
 </div>
 
 <!-- ── CTA ─────────────────────────────────────────── -->
 <div style="text-align: center; padding: 48px 0 64px;">
-  <p style="font-size: 0.95rem; color: #8b949e; margin-bottom: 24px;">World 1 is free. Worlds 2&ndash;4 unlock with Pro.</p>
+  <p style="font-size: 0.95rem; color: #a1a1aa; margin-bottom: 24px;">World 1 is free. Worlds 2&ndash;4 unlock with Pro.</p>
   <a href="https://earth-scanner-v2-xnxaxfjvvnarezf3h228mu.streamlit.app" class="btn btn-teal" target="_blank">Try Earth Scanner Free &rarr;</a>
   &nbsp;&nbsp;
   <a href="index.html#pricing" class="btn btn-outline">View Pricing</a>
