@@ -777,9 +777,9 @@ a:hover { color: #34d399; }
     <p class="section-sub">Every major market vertical, updated hourly via our high-performance FastAPI backend.</p>
     <div class="worlds-grid">
       <div class="world-card">
-        <div class="num">70</div>
+        <div class="num">31</div>
         <h3>Global Macro</h3>
-        <p>USD, Country ETFs, Commodities, Agriculture, FX, & Indices</p>
+        <p>USD, Commodities, FX, & Indices</p>
       </div>
       <div class="world-card">
         <div class="num">11</div>
@@ -952,10 +952,14 @@ const REGIME_EMOJI = {
   "Deflation / Growth Scare": "⚠️", "Mixed / Cross-Currents": "🌀",
 };
 
+// Presentation helper: picks dot style + z-score color from magnitude.
+// Label comes from backend r.severity (single source of truth). Tiers align
+// with hourly_alert_runner.severity(): Extreme>=3, Severe>=2, Moderate>=1.5.
 function severityClass(absZ) {
-  if (absZ >= 3.0) return { label: "Extreme", dot: "dot-extreme", color: "#ef4444" };
-  if (absZ >= 2.0) return { label: "Severe",  dot: "dot-severe",  color: "#f59e0b" };
-  return { label: "Moderate", dot: "dot-moderate", color: "#10b981" };
+  if (absZ >= 3.0) return { dot: "dot-extreme",  color: "#ef4444" };
+  if (absZ >= 2.0) return { dot: "dot-severe",   color: "#f59e0b" };
+  if (absZ >= 1.5) return { dot: "dot-moderate", color: "#10b981" };
+  return { dot: "dot-moderate", color: "#71717a" };
 }
 
 function formatUpdated(ts) {
@@ -978,7 +982,20 @@ async function loadShocks() {
     const updatedEl = document.getElementById("live-updated");
 
     if (!rows || rows.length === 0) {
-      tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;color:#71717a;padding:40px;font-family:'JetBrains Mono',monospace;font-size:0.85rem;">No shocks detected in current session</td></tr>`;
+      regimeEl.innerHTML = `Current Regime: <span style="color:#71717a;font-weight:600;">Markets Quiet</span>`;
+      updatedEl.textContent = formatUpdated(new Date().toISOString());
+      tbody.innerHTML = `
+        <tr><td colspan="5" style="padding:32px 24px;font-family:'JetBrains Mono',monospace;">
+          <div style="text-align:center;color:#a1a1aa;font-size:0.95rem;font-weight:600;letter-spacing:0.04em;margin-bottom:10px;">
+            NO LIVE SHOCKS
+          </div>
+          <div style="text-align:center;color:#71717a;font-size:0.8rem;line-height:1.6;max-width:560px;margin:0 auto;">
+            Nothing across Macro, Sectors, S&amp;P 500, or Alts is trading more than
+            <span style="color:#a1a1aa;">&plusmn;1.5&sigma;</span> from its recent baseline.
+            The scanner flags assets only when |Z| &ge; 1.5 &mdash; quiet tape, no signal.
+            This widget refreshes every 5 minutes.
+          </div>
+        </td></tr>`;
       return;
     }
 
@@ -990,6 +1007,7 @@ async function loadShocks() {
     tbody.innerHTML = rows.map(r => {
       const absZ = Math.abs(r.z_score);
       const sev = severityClass(absZ);
+      const label = r.severity || "Moderate";  // trust backend severity
       const arrow = r.direction === "up" ? "▲" : "▼";
       const moveColor = r.direction === "up" ? "#10b981" : "#ef4444";
       const zColor = sev.color;
@@ -1001,7 +1019,7 @@ async function loadShocks() {
           <td style="color:#71717a;">${worldLabel}</td>
           <td class="zscore" style="color:${zColor};">Z = ${zSign}${r.z_score.toFixed(2)}&sigma;</td>
           <td style="color:${moveColor};">${arrow} ${Math.abs(r.ret_pct).toFixed(1)}%</td>
-          <td><span class="dot ${sev.dot}"></span>${sev.label}</td>
+          <td><span class="dot ${sev.dot}"></span>${label}</td>
         </tr>`;
     }).join("");
 
